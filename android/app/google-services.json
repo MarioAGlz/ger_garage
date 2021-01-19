@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "78649029375",
+    "firebase_url": "https://ger-garage.firebaseio.com",
+    "project_id": "ger-garage",
+    "storage_bucket": "ger-garage.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78649029375:android:b80a15577689837f2d52ca",
+        "android_client_info": {
+          "package_name": "com.mazteksystems.ger_garage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78649029375-m444nd20dpg3rqtpm4ianp0hmg0c61d5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mazteksystems.ger_garage",
+            "certificate_hash": "3b1324b4ac5a47a94ffefdd1ed66678820172ced"
+          }
+        },
+        {
+          "client_id": "78649029375-til8p93lc5vglfl7n44eejs96b1otvod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtcYGHxosDxJLztog8hBA894_yZxpRhoQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78649029375-til8p93lc5vglfl7n44eejs96b1otvod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
