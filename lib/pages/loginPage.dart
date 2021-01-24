@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +43,7 @@ class LoginPage extends StatelessWidget with NavigationStates {
                         Text( 'Log In',
                           style: TextStyle(
                             color: Color(gunmetal),
-                            fontFamily: 'OpenSans',
+                            //fontFamily: 'OpenSans',
                             fontSize: 40.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -59,6 +61,7 @@ class LoginPage extends StatelessWidget with NavigationStates {
                               buildTextF(_tFpContrll, TextInputType.visiblePassword, 'Password',
                                   Icons.lock, 'Enter your password'),
                               _buildForgotPasswordBtn(),
+                              // _buildLogInBtn(context),
                               _buildLogInBtn(context),
                             ],
                           ),

@@ -1,11 +1,12 @@
 
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ger_garage/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:ger_garage/database/car_model.dart';
+import 'package:ger_garage/database/gears_db.dart';
 import 'package:ger_garage/styles/colors.dart';
 import 'package:ger_garage/widgetTempls.dart';
+import 'package:ger_garage/services/firebase/firebase_auth_srvc.dart';
 
 
 // ignore: must_be_immutable
@@ -35,7 +36,6 @@ class _AddNewCarState extends State<AddNewCar> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         //height: double.infinity,
@@ -52,11 +52,11 @@ class _AddNewCarState extends State<AddNewCar> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Add New Car',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w900),),
                 SizedBox(height: 10),
                 Icon(Icons.car_repair,
                   size: 60, color: Color(orangeSoda),),
-                SizedBox(height: 20,),
+                SizedBox(height: 20),
                 Container(
                   alignment: Alignment.center,
                   decoration: boxDecorationStyle,
@@ -120,9 +120,10 @@ class _AddNewCarState extends State<AddNewCar> {
                       'Audi',
                       'Mercedes',
                       'VW',
-                      'Smart',
+                      'BMW',
                       'Nissan',
-                      'Toyota'
+                      'Toyota',
+                      'Tesla'
                     ].map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                           value: value, child: Text(value));
@@ -166,6 +167,40 @@ class _AddNewCarState extends State<AddNewCar> {
                 ),
                 buildTextF(_tFvLContrllr, TextInputType.text, 'License Plate #',
                     Icons.featured_play_list, 'Enter the License plate number'),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 25),
+                  width: double.infinity,
+                  child: RaisedButton(
+                    elevation: 10,
+                    padding: EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    color: Color(carolBlue),
+                    child: Text( 'SAVE',
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 2,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'OpenSans',
+                      ),
+                    ),
+                    onPressed: () {
+                      if(_ncFormKey.currentState.validate()) {
+                        print("validado: "+ _tFvMdContrllr.text+" "+_vehMake );
+                        insertCar(Car(vType: _vehType, vMake: _vehMake,
+                            vModel: _tFvMdContrllr.text, vYear: _tFvYContrllr.text,
+                            vFuelTp: _vehFuel, vLPlate: _tFvLContrllr.text));
+                        FirebaseAuthService.mySnackBar(context, 'A new car saved');
+                        BlocProvider.of<NavigationBloc>(context)
+                            .add(NavigationEvents.MyCarsClickedEvent);
+                      }
+
+                    },
+                  ),
+                ),
+
               ],
             ),
           ),
@@ -173,4 +208,6 @@ class _AddNewCarState extends State<AddNewCar> {
       ),
     );
   }
+
 }
+

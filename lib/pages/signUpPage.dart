@@ -42,7 +42,7 @@ class SignUpPage extends StatelessWidget with NavigationStates {
                       Text( 'Sign Up',
                         style: TextStyle(
                           color: Color(gunmetal),
-                          fontFamily: 'OpenSans',
+                          //fontFamily: 'OpenSans',
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
                         ),

@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'dart:ui';
 
-// import 'package:date_time_picker/date_time_picker.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ger_garage/bloc/navigation_bloc/navigation_bloc.dart';
@@ -80,117 +81,8 @@ class _BookingsState extends State<Bookings> {
                 buildTextF(_tFuPContrll, TextInputType.phone, 'Phone number',
                     Icons.phone, 'Enter your phone number'),
                 SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
-                /*Container(
-                  alignment: Alignment.center,
-                  decoration: boxDecorationStyle,
-                  height: 60.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Icon(Icons.directions_car,
-                          size: 30, color: Color(orangeIcons)),
-                      DropdownButton<String>(
-                        value: _vehType,
-                        icon: Icon(Icons.arrow_drop_down,
-                            color: Color(orangeIcons)),
-                        iconSize: 45,
-                        elevation: 16,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 21,
-                            fontWeight: FontWeight.w400),
-                        dropdownColor: Color(gunmetal),
-                   // isExpanded: true,
-                        underline:
-                            Container(height: 0.3, color: Color(orangeIcons)),
-                        onChanged: (newValue) =>
-                            setState(() => _vehType = newValue),
-                        items: <String>[
-                          'Vehicle type',
-                          'Car',
-                          'Motorbike',
-                          'Van',
-                          'Small Bus'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                              value: value, child: Text(value));
-                        }).toList(),
-                      ),
-                    ],
-                  ),
-                ),
-                buildDropDw(
-                  Icon(Icons.branding_watermark,
-                      size: 30, color: Color(orangeIcons)),
-                  DropdownButton<String>(
-                    value: _vehMake,
-                    icon:
-                        Icon(Icons.arrow_drop_down, color: Color(orangeIcons)),
-                    iconSize: 45,
-                    elevation: 16,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 21,
-                        fontWeight: FontWeight.w400),
-                    dropdownColor: Color(gunmetal),
-//                    isExpanded: true,
-                    underline:
-                        Container(height: 0.3, color: Color(orangeIcons)),
-                    onChanged: (newValue) =>
-                        setState(() => _vehMake = newValue),
-                    items: <String>[
-                      'Vehicle make',
-                      'Audi',
-                      'Mercedes',
-                      'VW',
-                      'Smart',
-                      'Nissan',
-                      'Toyota'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList(),
-                  ),
-                ),
-                buildTextF(_tFvMContrll, TextInputType.text, 'Vehicle model',
-                    Icons.directions_car, 'Enter the vehicle model'),
-                buildTextF(_tFvYContrll, TextInputType.number, 'Vehicle year',
-                    Icons.calendar_today, 'Enter the vehicle year'),
-                buildDropDw(
-                  Icon(Icons.battery_charging_full,
-                      size: 30, color: Color(orangeIcons)),
-                  DropdownButton<String>(
-                    value: _vehFuel,
-                    icon:
-                    Icon(Icons.arrow_drop_down, color: Color(orangeIcons)),
-                    iconSize: 45,
-                    elevation: 16,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 21,
-                        fontWeight: FontWeight.w400, ),
-                    dropdownColor: Color(gunmetal),
-//                    isExpanded: true,
-                    underline:
-                    Container(height: 0.3, color: Color(orangeIcons)),
-                    onChanged: (newValue) =>
-                        setState(() => _vehFuel = newValue),
-                    items: <String>[
-                      'Fuel type',
-                      'Petrol',
-                      'Diesel',
-                      'Electric',
-                      'Hybrid'
-                    ].map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                          value: value, child: Text(value));
-                    }).toList(),
-                  ),
-                ),
-                buildTextF(_tFvLContrll, TextInputType.text, 'License Plate #',
-                    Icons.featured_play_list, 'Enter the License plate number'),*/
                 buildDropDw(
                   Icon(Icons.build,
                       size: 25, color: Color(orangeIcons)),
@@ -223,17 +115,71 @@ class _BookingsState extends State<Bookings> {
                     }).toList(),
                   ),
                 ),
-                /*DateTimePicker(
-                  controller: _tFtDContrll,
-                  type: DateTimePickerType.date,
-                  initialValue: '',
-                  firstDate: DateTime(2020),
-                  lastDate: DateTime(2050),
-                  dateLabelText: 'Date',
-
-                ),*/
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.only(left: 8),
+                  alignment: Alignment.center,
+                  decoration: boxDecorationDate,
+                  height: 65,
+                  child: DateTimePicker(
+                    controller: _tFtDContrll,
+                    type: DateTimePickerType.dateTimeSeparate,
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime(2050),
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    dateLabelText: 'Date',
+                    dateMask: 'd MMM, yyyy',
+                    timeLabelText: 'Time',
+                    icon: Icon(Icons.event, color: Color(orangeIcons), size: 27),
+                    selectableDayPredicate: (date) {
+                      if(date.weekday == 7) {
+                        return false;
+                      }
+                      return true;
+                    },
+                  ),
+                ),
                 buildTextF(_tFuCContrll, TextInputType.text, 'User comments',
                     Icons.comment, 'Enter comments'),
+                SizedBox(height: 25),
+                Container(
+                  decoration: boxDecorationDate,
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  alignment: Alignment.center,
+                  // height: 60,
+                  child: Column(
+                    children: [
+                      Text('Select your car:',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 25),
+                  width: double.infinity,
+                  child: RaisedButton(
+                    elevation: 10,
+                    padding: EdgeInsets.all(15.0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    color: Color(carolBlue),
+                    child: Text( 'SEND',
+                      style: TextStyle(
+                        color: Colors.white,
+                        letterSpacing: 2,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'OpenSans',
+                      ),
+                    ),
+                    onPressed: () => {
+                    },
+                  ),
+                ),
+
               ],
             ),
           ),

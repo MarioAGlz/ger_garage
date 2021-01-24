@@ -28,6 +28,19 @@ final boxDecorationStyle = BoxDecoration(
   ],
 );
 
+final boxDecorationDate = BoxDecoration(
+  color: Color(azureBlue),
+  border: Border.all(width: 3, style: BorderStyle.solid, color: Color(gunmetal),),
+  borderRadius: BorderRadius.circular(10.0),
+  boxShadow: [
+    BoxShadow(
+      color: Color(dazzledBlue),
+      blurRadius: 6.0,
+      offset: Offset(0, 2),
+    ),
+  ],
+);
+
 final hintTextStyle = TextStyle(
   color: Colors.white54,
   fontFamily: 'OpenSans',
@@ -35,6 +48,6 @@ final hintTextStyle = TextStyle(
 
 final textFieldStyle = TextStyle(
   color: Colors.white,
-  fontSize: 18,
+  fontSize: 17,
   fontFamily: 'OpenSans',
 );
