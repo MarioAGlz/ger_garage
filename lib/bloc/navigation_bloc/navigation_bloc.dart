@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ger_garage/SideBar/sidebar.dart';
 import 'package:ger_garage/pages/homePage.dart';
 import 'package:ger_garage/pages/loginPage.dart';
 import 'package:ger_garage/pages/myCarsPage.dart';
@@ -14,6 +15,7 @@ enum NavigationEvents {
   LoginClickedEvent,
   LogoutClickedEvent,
   SigUpClickedEvent,
+  // SideBarEvent,
 }
 
 abstract class NavigationStates {}
@@ -21,7 +23,7 @@ abstract class NavigationStates {}
 class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
   @override
   // TODO: implement initialState
-  NavigationStates get initialState => HomePage();
+  NavigationStates get initialState => LoginPage();
 
   @override
   Stream<NavigationStates> mapEventToState(NavigationEvents event) async* {
@@ -45,6 +47,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.SigUpClickedEvent:
         yield SignUpPage();
         break;
+      /*case NavigationEvents.SideBarEvent:
+        yield SideBar();
+        break;*/
     }
   }
 }

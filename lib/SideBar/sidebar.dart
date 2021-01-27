@@ -178,6 +178,12 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                             BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.SigUpClickedEvent);
                           },
                         ),
+                        Card(color: Colors.black54, shadowColor: Color(dazzledBlue), elevation: 6,
+                          margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+                          child: Text("Ger's Garage \nMobile App\nDesigned by: Mario Glz.",
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
+                        ),
                       ],
                     ),
                   ),

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ger_garage/SideBar/sidebar.dart';
 import 'package:ger_garage/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:ger_garage/styles/colors.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -27,7 +28,7 @@ class FirebaseAuthService {
           email: email, password: password);
       print(_authResult.user.email);
       mySnackBar(context, 'Log in Successful');
-
+      BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
     } catch (e) {
       print(e);
       mySnackBar(context, e.toString());

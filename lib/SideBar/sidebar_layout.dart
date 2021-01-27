@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ger_garage/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:ger_garage/pages/loginPage.dart';
 import 'sidebar.dart';
 
 class SideBarLayout extends StatelessWidget {
@@ -16,7 +17,8 @@ class SideBarLayout extends StatelessWidget {
                 return navigationState as Widget;
                 },
             ),
-            SideBar()
+            SideBar(),
+            // LoginPage()
             ],
         ),
       ),

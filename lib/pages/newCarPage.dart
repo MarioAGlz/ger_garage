@@ -205,7 +205,6 @@ class _AddNewCarState extends State<AddNewCar> {
                         BlocProvider.of<NavigationBloc>(context)
                             .add(NavigationEvents.MyCarsClickedEvent);
                       }
-
                     },
                   ),
                 ),

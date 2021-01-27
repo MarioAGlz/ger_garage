@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ger_garage/SideBar/sidebar.dart';
 import 'package:ger_garage/bloc/navigation_bloc/navigation_bloc.dart';
 import 'package:ger_garage/services/firebase/firebase_auth_srvc.dart';
 import 'package:ger_garage/styles/colors.dart';
