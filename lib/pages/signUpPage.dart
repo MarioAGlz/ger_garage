@@ -54,14 +54,14 @@ class SignUpPage extends StatelessWidget with NavigationStates {
                         key: _snFormKey,
                         child: Column(
                           children: <Widget>[
-                            buildTextF(_tFnContrll, TextInputType.name, 'Name',
-                                Icons.person, 'Enter your name'),
+                            buildTextF(_tFnContrll, TextInputType.name, false,
+                                'Name', Icons.person, 'Enter your name'),
                             // SizedBox(height: 10.0,),
-                            buildTextF(_tFeContrll, TextInputType.emailAddress, 'Email',
-                                Icons.email, 'Enter your Email'),
+                            buildTextF(_tFeContrll, TextInputType.emailAddress, false,
+                                'Email', Icons.email, 'Enter your Email'),
                             // SizedBox(height: 10.0,),
-                            buildTextF(_tFpContrll, TextInputType.visiblePassword, 'Password',
-                                Icons.lock, 'Enter your password'),
+                            buildTextF(_tFpContrll, TextInputType.visiblePassword, true,
+                                'Password', Icons.lock, 'Enter your password'),
                             _buildSignUpBtn(context),
                           ],
                         ),
@@ -91,6 +91,9 @@ class SignUpPage extends StatelessWidget with NavigationStates {
         onPressed: () => {
           print('SignUp Button Pressed'),
           if(_snFormKey.currentState.validate()) {
+            _name = _tFnContrll.text,
+            _email = _tFeContrll.text,
+            _password = _tFpContrll.text,
             FirebaseAuthService.firebaseSignUp(context, _email, _password),
             _tFnContrll.clear(),
             _tFeContrll.clear(),

@@ -27,6 +27,7 @@ class FirebaseAuthService {
           email: email, password: password);
       print(_authResult.user.email);
       mySnackBar(context, 'Log in Successful');
+
     } catch (e) {
       print(e);
       mySnackBar(context, e.toString());

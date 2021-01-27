@@ -37,6 +37,15 @@ class _AddNewCarState extends State<AddNewCar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(azureBlue),
+        title: IconButton(icon: Icon(Icons.arrow_back_rounded), iconSize: 30,
+        onPressed: () {
+          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyCarsClickedEvent);
+        },),
+        elevation: 0,
+        // leading:,
+      ),
       body: Container(
         //height: double.infinity,
         alignment: Alignment.topCenter,
@@ -44,7 +53,7 @@ class _AddNewCarState extends State<AddNewCar> {
           physics: AlwaysScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 45.0,
-            vertical: 100.0,
+            vertical: 15.0,
           ),
           child: Form(
             key: _ncFormKey,
@@ -130,10 +139,10 @@ class _AddNewCarState extends State<AddNewCar> {
                     }).toList(),
                   ),
                 ),
-                buildTextF(_tFvMdContrllr, TextInputType.text, 'Vehicle model',
-                    Icons.directions_car, 'Enter the vehicle model'),
-                buildTextF(_tFvYContrllr, TextInputType.number, 'Vehicle year',
-                    Icons.calendar_today, 'Enter the vehicle year'),
+                buildTextF(_tFvMdContrllr, TextInputType.text, false,
+                    'Vehicle model', Icons.directions_car, 'Enter the vehicle model'),
+                buildTextF(_tFvYContrllr, TextInputType.number, false,
+                    'Vehicle year', Icons.calendar_today, 'Enter the vehicle year'),
                 buildDropDw(
                   Icon(Icons.battery_charging_full,
                       size: 30, color: Color(orangeIcons)),
@@ -165,8 +174,8 @@ class _AddNewCarState extends State<AddNewCar> {
                     }).toList(),
                   ),
                 ),
-                buildTextF(_tFvLContrllr, TextInputType.text, 'License Plate #',
-                    Icons.featured_play_list, 'Enter the License plate number'),
+                buildTextF(_tFvLContrllr, TextInputType.text, false,
+                    'License Plate #', Icons.featured_play_list, 'Enter the License plate number'),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 25),
                   width: double.infinity,

@@ -89,10 +89,10 @@ class _MyCarsState extends State<MyCars> {
       ),
       onDismissed: (direction) {
         print('item deleted: $i');
-        deleteCar(i);
+        deleteCar(myCars[i].id);
       },
       child: ListTile(
-        contentPadding: EdgeInsets.only(left: 16, bottom: 10),
+        contentPadding: EdgeInsets.only(left: 10, bottom: 10),
         title: Text(myCars[i].vMake,
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,
               fontSize: 20),),
@@ -108,6 +108,7 @@ class _MyCarsState extends State<MyCars> {
                 Text(myCars[i].vYear,
                   style: TextStyle(color: Colors.white60, fontWeight: FontWeight.w600,
                       fontSize: 18),),
+                SizedBox(width: 8)
               ],
             ),
             Row(
@@ -115,19 +116,20 @@ class _MyCarsState extends State<MyCars> {
               children: [
                 Text(myCars[i].vType,
                   style: TextStyle(color: Colors.white60, fontWeight: FontWeight.w600,
-                      fontSize: 18),),
+                      fontSize: 16),),
                 Text(myCars[i].vFuelTp,
                   style: TextStyle(color: Colors.white60, fontWeight: FontWeight.w600,
-                      fontSize: 18),),
+                      fontSize: 16),),
                 Text(myCars[i].vLPlate,
                   style: TextStyle(color: Colors.white60, fontWeight: FontWeight.w600,
-                      fontSize: 18),),
+                      fontSize: 16),),
               ],
             ),
           ],
         ),
         trailing: MaterialButton(
-            onPressed: (){
+          minWidth: 20,
+            onPressed: () {
               BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.AddNewCarClickedEvent);
             },
             child: Icon(Icons.edit, color: Color(orangeIcons),)),

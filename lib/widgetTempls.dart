@@ -7,7 +7,7 @@ import 'bloc/navigation_bloc/navigation_bloc.dart';
 
 
 Widget buildTextF(TextEditingController _tFContrllr, TextInputType tIType,
-    String labelTxt, IconData iconTF, String errorMsg) {
+    bool obsT, String labelTxt, IconData iconTF, String errorMsg) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
@@ -19,6 +19,7 @@ Widget buildTextF(TextEditingController _tFContrllr, TextInputType tIType,
         child: TextFormField(
           controller: _tFContrllr,
           keyboardType: tIType,
+          obscureText: obsT,
           style: textFieldStyle,
           decoration: InputDecoration(
             border: InputBorder.none,
@@ -34,7 +35,7 @@ Widget buildTextF(TextEditingController _tFContrllr, TextInputType tIType,
           ),
 //            onChanged: (value) => getVal,
           validator: (value) =>
-          value.trim().isEmpty ? '     ' + errorMsg : null,
+          value.trim().isEmpty ? '    ' + errorMsg : null,
         ),
       ),
     ],

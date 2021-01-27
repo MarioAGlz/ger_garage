@@ -55,11 +55,11 @@ class LoginPage extends StatelessWidget with NavigationStates {
                           key: _lgFormKey,
                           child: Column(
                             children: <Widget>[
-                              buildTextF(_tFeContrll, TextInputType.emailAddress, 'Email',
-                                  Icons.email, 'Enter your Email'),
+                              buildTextF(_tFeContrll, TextInputType.emailAddress, false,
+                                  'Email', Icons.email, 'Enter your Email'),
                               // SizedBox(height: 10.0,),
-                              buildTextF(_tFpContrll, TextInputType.visiblePassword, 'Password',
-                                  Icons.lock, 'Enter your password'),
+                              buildTextF(_tFpContrll, TextInputType.visiblePassword, true,
+                                  'Password', Icons.lock, 'Enter your password'),
                               _buildForgotPasswordBtn(),
                               // _buildLogInBtn(context),
                               _buildLogInBtn(context),
@@ -108,6 +108,8 @@ class LoginPage extends StatelessWidget with NavigationStates {
         onPressed: () => {
           print('Login Button Pressed'),
           if(_lgFormKey.currentState.validate()) {
+            _email = _tFeContrll.text,
+            _password = _tFpContrll.text,
             FirebaseAuthService.firebaseSignIn(context, _email, _password),
             _tFeContrll.clear(),
             _tFpContrll.clear(),
