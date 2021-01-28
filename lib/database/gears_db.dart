@@ -71,51 +71,50 @@ Future<void> deleteCar(int id) async {
 }
 
 
-class DBOperation {
-
-
 /* ----  Operation for bookings table  ---- */
-  Future<void> insertBkn(Booking booking) async {
-    // Get reference of the database
-    final Database db = await openDB();
+Future<void> insertBkn(Booking booking) async {
+  // Get reference of the database
+  final Database db = await openDB();
 
-    // Insert in the table a new object
-    await db.insert('bookings', booking.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-  }
+  // Insert in the table a new object
+  await db.insert('bookings', booking.toMap(),
+      conflictAlgorithm: ConflictAlgorithm.replace);
+}
 
-  Future<List<Booking>> allBkns() async {
-    final Database db = await openDB();
+Future<List<Booking>> allBkns() async {
+  final Database db = await openDB();
 
-    // Query the table for all The cars.
-    final List<Map<String, dynamic>> bMaps = await db.query('bookings');
+  // Query the table for all The cars.
+  final List<Map<String, dynamic>> bMaps = await db.query('bookings');
 
-    // Convert the List<Map<String, dynamic> into a List<Product>.
-    return List.generate(bMaps.length, (i) => Booking(
-      id: bMaps[i]['id'],
-      bName: bMaps[i]['bName'],
-      bEmail: bMaps[i]['bEmail'],
-      bPhone: bMaps[i]['bPhone'],
-      bServTp: bMaps[i]['bServTp'],
-      bDate: bMaps[i]['bDate'],
-      bComment: bMaps[i]['bComment'],
-      bCar: bMaps[i]['bCar'],
-    ));
-  }
+  // Convert the List<Map<String, dynamic> into a List<Product>.
+  return List.generate(bMaps.length, (i) => Booking(
+    id: bMaps[i]['id'],
+    bName: bMaps[i]['bName'],
+    bEmail: bMaps[i]['bEmail'],
+    bPhone: bMaps[i]['bPhone'],
+    bServTp: bMaps[i]['bServTp'],
+    bDate: bMaps[i]['bDate'],
+    bComment: bMaps[i]['bComment'],
+    bCar: bMaps[i]['bCar'],
+  ));
+}
 
-  Future<void> updateBkn(Booking booking) async {
-    final Database db = await openDB();
+Future<void> updateBkn(Booking booking) async {
+  final Database db = await openDB();
 
-    // Update the given object.
-    await db.update('bookings', booking.toMap(), where: "id = ?", whereArgs: [booking.id]);
-  }
+  // Update the given object.
+  await db.update('bookings', booking.toMap(), where: "id = ?", whereArgs: [booking.id]);
+}
 
-  Future<void> deleteBkn(int id) async {
-    final Database db = await openDB();
+Future<void> deleteBkn(int id) async {
+  final Database db = await openDB();
 
-    // Remove the object from the database.
-    await db.delete('bookings', where: "id= ?", whereArgs: [id]);
-  }
+  // Remove the object from the database.
+  await db.delete('bookings', where: "id= ?", whereArgs: [id]);
+}
 
+
+class DBOperation {
 
 }

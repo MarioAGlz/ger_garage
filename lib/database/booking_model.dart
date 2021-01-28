@@ -1,4 +1,3 @@
-import 'package:ger_garage/database/car_model.dart';
 
 class Booking {
   final int id;
@@ -19,10 +18,10 @@ class Booking {
       'bName': bName,
       'bEmail': bEmail,
       'bPhone': bPhone,
-      'bServiceTp': bServTp,
-      'bDateTime': bDate,
+      'bServTp': bServTp,
+      'bDate': bDate,
       'bComment': bComment,
-      'bCar': bCar,
+      // 'bCar': bCar,
     };
   }
 
@@ -30,7 +29,7 @@ class Booking {
   String toString() {
     return 'Booking("id": ${this.id}, "bName": ${this.bName}, '
         '"bEmail": ${this.bEmail}, "bPhone": ${this.bPhone}, '
-        '"bServiceTp": ${this.bServTp}, "bDateTime": ${this.bDate}, '
+        '"bServTp": ${this.bServTp}, "bDateTime": ${this.bDate}, '
         '"bComment": ${this.bComment}, "bCar": ${this.bCar});';
   }
 }

@@ -41,10 +41,9 @@ class _AddNewCarState extends State<AddNewCar> {
         backgroundColor: Color(azureBlue),
         title: IconButton(icon: Icon(Icons.arrow_back_rounded), iconSize: 30,
         onPressed: () {
-          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyCarsClickedEvent);
-        },),
+          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyCarsClickedEvent);},
+        ),
         elevation: 0,
-        // leading:,
       ),
       body: Container(
         //height: double.infinity,
@@ -200,7 +199,8 @@ class _AddNewCarState extends State<AddNewCar> {
                         print("validado: "+ _tFvMdContrllr.text+" "+_vehMake );
                         insertCar(Car(vType: _vehType, vMake: _vehMake,
                             vModel: _tFvMdContrllr.text, vYear: _tFvYContrllr.text,
-                            vFuelTp: _vehFuel, vLPlate: _tFvLContrllr.text));
+                            vFuelTp: _vehFuel, vLPlate: _tFvLContrllr.text)
+                        );
                         FirebaseAuthService.mySnackBar(context, 'A new car saved');
                         BlocProvider.of<NavigationBloc>(context)
                             .add(NavigationEvents.MyCarsClickedEvent);

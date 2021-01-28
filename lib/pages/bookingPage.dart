@@ -4,7 +4,11 @@ import 'dart:ui';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ger_garage/bloc/navigation_bloc/navigation_bloc.dart';
+import 'package:ger_garage/database/booking_model.dart';
+import 'package:ger_garage/database/gears_db.dart';
+import 'package:ger_garage/services/firebase/firebase_auth_srvc.dart';
 import 'package:ger_garage/styles/colors.dart';
 import 'package:ger_garage/widgetTempls.dart';
 
@@ -51,13 +55,22 @@ class _BookingsState extends State<Bookings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(azureBlue),
+        title: Text('Bookings ',),
+        elevation: 0,
+        leading: IconButton(icon: Icon(Icons.arrow_back), iconSize: 30,
+          onPressed: () {
+            BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.BookingsClickedEvent);},
+        ),
+      ),
       body: Container(
         height: double.infinity,
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: 45.0,
-            vertical: 90.0,
+            vertical: 15.0,
           ),
           child: Form(
             key: _bFormKey,
@@ -152,6 +165,7 @@ class _BookingsState extends State<Bookings> {
                       Text('Select your car:',
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
+                      SizedBox(height: 20),
 
                     ],
                   ),
@@ -175,11 +189,19 @@ class _BookingsState extends State<Bookings> {
                         fontFamily: 'OpenSans',
                       ),
                     ),
-                    onPressed: () => {
+                    onPressed: () {
+                      if(_bFormKey.currentState.validate()) {
+                        print('validated: '+_tFuNContrll.text+' '+_tFtDContrll.text);
+                        insertBkn(Booking(bName: _tFuNContrll.text, bEmail: _tFuMContrll.text,
+                            bPhone: _tFuPContrll.text, bServTp: _servType, bDate: _tFtDContrll.text,
+                            bComment: _tFuCContrll.text)
+                        );
+                        FirebaseAuthService.mySnackBar(context, 'A Booking saved');
+                        BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.BookingsClickedEvent);
+                      }
                     },
                   ),
                 ),
-
               ],
             ),
           ),

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:ger_garage/SideBar/sidebar.dart';
 import 'package:ger_garage/pages/homePage.dart';
 import 'package:ger_garage/pages/loginPage.dart';
+import 'package:ger_garage/pages/myBookingsPage.dart';
 import 'package:ger_garage/pages/myCarsPage.dart';
 import 'package:ger_garage/pages/bookingPage.dart';
 import 'package:ger_garage/pages/newCarPage.dart';
@@ -15,7 +15,7 @@ enum NavigationEvents {
   LoginClickedEvent,
   LogoutClickedEvent,
   SigUpClickedEvent,
-  // SideBarEvent,
+  BookingsClickedEvent,
 }
 
 abstract class NavigationStates {}
@@ -47,9 +47,9 @@ class NavigationBloc extends Bloc<NavigationEvents, NavigationStates> {
       case NavigationEvents.SigUpClickedEvent:
         yield SignUpPage();
         break;
-      /*case NavigationEvents.SideBarEvent:
-        yield SideBar();
-        break;*/
+      case NavigationEvents.BookingsClickedEvent:
+        yield MyBookings();
+        break;
     }
   }
 }
