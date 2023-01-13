@@ -14,11 +14,11 @@ class FirebaseAuthService {
   static FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   static GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  static Stream<FirebaseUser> firebaseListener =
-      _firebaseAuth.onAuthStateChanged;
+  static Stream<User> firebaseListener =
+      _firebaseAuth.authStateChanges();
 
   static void mySnackBar(BuildContext context, String str) =>
-      Scaffold.of(context).showSnackBar(SnackBar(content: Text(str),
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(str),
         elevation: 10.0, backgroundColor: Color(gunmetal),
         behavior: SnackBarBehavior.floating,));
 
@@ -51,28 +51,28 @@ class FirebaseAuthService {
   static void fBSignInWithGoogle(BuildContext context) async {
     try {
       fBGoogleUserDetail()
-        .then((AuthResult user) => print(user.user.email));
-      mySnackBar(context, 'Sign in with Google');
+        .then((UserCredential user) => print(user.user.email));
+      mySnackBar(context, 'Signed in with Google');
     } catch (e) {
       print(e);
       mySnackBar(context, e.toString());
     }
   }
 
-  static Future<AuthResult> fBGoogleUserDetail() async {
+  static Future<UserCredential> fBGoogleUserDetail() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
+    final AuthCredential credential = GoogleAuthProvider.credential(
         idToken: googleAuth.idToken,
         accessToken: googleAuth.accessToken
     );
-    final userDetails = (await _firebaseAuth.signInWithCredential(credential));
+    final userDetails = await _firebaseAuth.signInWithCredential(credential);
     return userDetails;
   }
 
 
-  static Future<FirebaseUser> firebaseUserDetail() async =>
-      await _firebaseAuth.currentUser();
+  static Future<User> firebaseUserDetail() async =>
+      await _firebaseAuth.currentUser;
 
   static void firebaseLogout(BuildContext context) async {
     try {
@@ -86,10 +86,10 @@ class FirebaseAuthService {
 
 
   final DocumentReference bookingReference =
-      Firestore.instance.collection('bookings').document('');
+      FirebaseFirestore.instance.collection('bookings').doc('');
 
   final DocumentReference carsReference =
-      Firestore.instance.collection('cars').document('');
+      FirebaseFirestore.instance.collection('cars').doc('');
 
 
 

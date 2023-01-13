@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:date_time_picker/date_time_picker.dart';
@@ -29,7 +28,7 @@ class _BookingsState extends State<Bookings> {
   String _vehLicence;
   String _vehEngine;
   String _servType = 'Service type';
-  String _daTime;
+  String _daTime = DateTime.now().toString();
   String _userCommt;
 
   TextEditingController _tFuNContrll = TextEditingController();
@@ -49,6 +48,7 @@ class _BookingsState extends State<Bookings> {
 
   void _setData() {
     _userName = _tFuNContrll.text;
+
   }
 
 
@@ -145,8 +145,8 @@ class _BookingsState extends State<Bookings> {
                     timeLabelText: 'Time',
                     icon: Icon(Icons.event, color: Color(orangeIcons), size: 27),
                     selectableDayPredicate: (date) {
-                      if(date.weekday == 7) {
-                        return false;
+                      if(date.weekday == 7  ) {
+                        return true;
                       }
                       return true;
                     },

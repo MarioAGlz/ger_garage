@@ -101,7 +101,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         FutureBuilder(
                             future: FirebaseAuthService.firebaseUserDetail(),
                             builder: (BuildContext context,
-                              AsyncSnapshot<FirebaseUser> fBSnapshot) {
+                              AsyncSnapshot<User> fBSnapshot) {
                               if (fBSnapshot.hasData) {
                                 return Column(
                                   children: <Widget>[
